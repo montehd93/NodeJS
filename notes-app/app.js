@@ -1,8 +1,17 @@
 const yargs = require("yargs");
 const chalk = require("chalk");
 const notes = require("./notes");
-const { array } = require("yargs");
 
+/*
+Challenge
+
+1. Setup the remove commando to take a required "--title" option
+2. Create and export a removeNote function from note.js
+3. Call removeNote in remove command handler
+4. Have removeNote log the tittle of the note to be removed
+5. Test your work using: note add.js remove --title='some title'
+
+*/
 //Customize yargs version
 yargs.version("1.1.0");
 

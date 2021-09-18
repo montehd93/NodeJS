@@ -1,5 +1,6 @@
 const fs = require("fs");
 const { title } = require("process");
+const chalk = require("chalk");
 
 const getNotes = () => {
   return `Your notes...`;
@@ -27,18 +28,21 @@ const addNote = (title, body) => {
       body: body,
     });
     saveNotes(notes);
-    console.log("New note added!");
+    console.log(chalk.green.inverse("New note added!"));
   } else {
-    console.log("Note title taken!");
+    console.log(chalk.red.inverse("Note title taken!"));
   }
 };
 const removeNote = (title) => {
   const notes = loadNotes();
-  console.log(notes);
-  for ([i, title] of Object.entries(notes)) {
-    delete notes[i];
-    console.log(title, notes);
-    saveNotes(notes);
+  const newNotes = notes.filter((note) => {
+    return note.title !== title;
+  });
+  if (newNotes.length !== notes.length) {
+    saveNotes(newNotes);
+    console.log(chalk.green.inverse(`Note ${title} Removed`));
+  } else {
+    console.log(chalk.red.inverse(`No note found: ${title}`));
   }
 };
 //Módulos de exportação
