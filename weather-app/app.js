@@ -1,17 +1,20 @@
 ("use strict");
-const request = require("request");
-const key = "afc55c2bebd141ba4cc5b62497d814b9";
-let place = "New York";
-let historicalDate = "2020-09-25";
-const historical = `&historical_date=${historicalDate}`;
-const urlCurrent = `http://api.weatherstack.com/current?access_key=${key}&query=${place}`;
+const geocode = require("./utils/geocode");
+const forecast = require("./utils/forecast");
+const location = process.argv[2];
 
-// console.log(urlCurrent);
-//starting request
-
-request({ url: urlCurrent }, (error, response) => {
-  const data = JSON.parse(response.body);
-  console.log(data.current);
+geocode(location, (e, data) => {
+  if (process.argv.length > 2) {
+    if (e) {
+      return console.log(e);
+    }
+    forecast(data.latitude, data.longitude, data.location, (e, data) => {
+      if (e) {
+        return console.log(e);
+      }
+      return console.log(data);
+    });
+  }
 });
 
 /*
