@@ -3,19 +3,21 @@ const geocode = require("./utils/geocode");
 const forecast = require("./utils/forecast");
 const location = process.argv[2];
 
-geocode(location, (e, data) => {
-  if (process.argv.length > 2) {
+if (!location) {
+  console.log("Please provide an address");
+} else {
+  geocode(location, (e, { latitude, longitude, location } = {}) => {
     if (e) {
       return console.log(e);
     }
-    forecast(data.latitude, data.longitude, data.location, (e, data) => {
+    forecast(latitude, longitude, location, (e, data) => {
       if (e) {
         return console.log(e);
       }
       return console.log(data);
     });
-  }
-});
+  });
+}
 
 /*
 UPDATE: with weatherStack(NEW)

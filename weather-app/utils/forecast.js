@@ -6,9 +6,9 @@ const historical = `&historical_date=${historicalDate}`;
 
 const forecast = (latitude, longitude, location, callback) => {
   //teste
-  const urlCurrent = `http://api.weatherstack.com/current?access_key=${key}&query=${longitude},${latitude}`;
-  request({ url: urlCurrent, json: true }, (error, response) => {
-    state = response.body.error;
+  const url = `http://api.weatherstack.com/current?access_key=${key}&query=${longitude},${latitude}`;
+  request({ url, json: true }, (error, { body }) => {
+    state = body.error;
     if (error) {
       callback("Unable to retrieve data", undefined);
     } else if (state) {
@@ -16,7 +16,7 @@ const forecast = (latitude, longitude, location, callback) => {
     } else {
       callback(
         undefined,
-        `${location}, ${response.body.location.localtime}, ${response.body.current.weather_descriptions} it's currently ${response.body.current.temperature} degrees and feels like ${response.body.current.feelslike} degrees`
+        `${location}, ${body.location.localtime}, ${body.current.weather_descriptions} it's currently ${body.current.temperature} degrees and feels like ${body.current.feelslike} degrees`
       );
     }
   });
