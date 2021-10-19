@@ -1,0 +1,41 @@
+h1 {
+  color: gray;
+}
+body {
+  color: #333333;
+  font-family: arial;
+  margin: 0 auto;
+  max-width: 650px;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+header {
+  margin-top: 16px;
+  margin-bottom: 48px;
+}
+header a {
+  color: #c0c0c0;
+  margin-right: 16px;
+  text-decoration: none;
+}
+.main-content {
+  flex-grow: 1;
+}
+.error > h1 {
+  color: rgb(119, 5, 5);
+  font-size: 120px;
+  text-align: center;
+}
+.portrait {
+  width: 250px;
+}
