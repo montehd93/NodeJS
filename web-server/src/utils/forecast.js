@@ -8,11 +8,10 @@ const forecast = (latitude, longitude, location, callback) => {
   //teste
   const url = `http://api.weatherstack.com/current?access_key=${key}&query=${longitude},${latitude}`;
   request({ url, json: true }, (error, { body }) => {
-    state = body.error;
     if (error) {
       callback("Unable to retrieve data", undefined);
-    } else if (state) {
-      callback(`ERROR: ${state.info}`, undefined);
+    } else if (body.error) {
+      callback(`ERROR: ${body.error.state.info}`, undefined);
     } else {
       callback(
         undefined,
