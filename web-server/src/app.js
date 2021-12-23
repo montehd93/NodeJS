@@ -3,6 +3,7 @@ const express = require("express");
 const path = require("path");
 const hbs = require("hbs");
 const app = express();
+const port = process.env.PORT || 3000;
 const ourVersion = require("../package.json");
 const geocode = require("./utils/geocode");
 const forecast = require("./utils/forecast");
@@ -85,6 +86,6 @@ app.get("*", (req, res) => {
     title: "Not found page",
   });
 });
-app.listen(3000, () => {
+app.listen(port, () => {
   console.log("Server is on");
 });

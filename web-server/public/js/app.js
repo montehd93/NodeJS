@@ -14,7 +14,7 @@ const weatherPar = document.querySelector(".weather");
 const cityPar = document.querySelector(".city");
 
 function gettingAddress(addres) {
-  fetch(`http://localhost:3000/weather?address=${addres}`)
+  fetch(`/weather?address=${addres}`)
     .then((response) => response.json())
     .then((data) => {
       cityPar.innerHTML = "";
